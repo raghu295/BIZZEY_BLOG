@@ -43,7 +43,14 @@
         <ul>
           <li><a class="nav-link scrollto" href="{% url 'home' %}">Home</a></li>
           <li><a class="nav-link scrollto" href="{% url 'register' %}">Register</a></li>
+          {% if user.is_authenticated %}
+           {% if request.user.is_superuser %}
+              <li><a class="nav-link scrollto" href="{% url 'add_your_blog' %}">Create Blog</a></li>
+           {% endif %}
+          <li><a class="nav-link scrollto" href="{% url 'user_logout' %}">Logout</a></li>
+          {% else %}
           <li><a class="nav-link scrollto" href="{% url 'login' %}">Login</a></li>
+          {% endif %}
           <li><a class="nav-link scrollto" href="{% url 'blog' %}">Blog</a></li>
           <li><a class="nav-link scrollto" href="{% url 'contact' %}">Contact</a></li>
         </ul>

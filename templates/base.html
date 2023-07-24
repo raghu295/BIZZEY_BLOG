@@ -26,6 +26,7 @@
   <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/search.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -43,16 +44,18 @@
         <ul>
           <li><a class="nav-link scrollto" href="{% url 'home' %}">Home</a></li>
           <li><a class="nav-link scrollto" href="{% url 'register' %}">Register</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'blog' %}">Blog</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'contact' %}">Contact</a></li>
           {% if user.is_authenticated %}
            {% if request.user.is_superuser %}
               <li><a class="nav-link scrollto" href="{% url 'add_your_blog' %}">Create Blog</a></li>
            {% endif %}
           <li><a class="nav-link scrollto" href="{% url 'user_logout' %}">Logout</a></li>
+                    <li><a class="nav-link scrollto" href="{% url 'profile_page' %}"><img class="rounded-circle mt-0" width="50px" height="50px"
+                     src="{{ request.session.profile_pic }}"></a></li>
           {% else %}
           <li><a class="nav-link scrollto" href="{% url 'login' %}">Login</a></li>
           {% endif %}
-          <li><a class="nav-link scrollto" href="{% url 'blog' %}">Blog</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'contact' %}">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -91,10 +94,10 @@
             </a>
             <p>Here we are publishing bizzey vlog that contain news over the latest technology and trends</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="https://twitter.com/BzyOfficial_295" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="https://www.facebook.com/bizzey.29/" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/ra__hul__5/" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/raghunandan-chaudhary-372310212/" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
 

@@ -16,6 +16,18 @@
                         <p>{{ blog.description }}</p>
                     </div>
                 </div>
+                {% if request.user.is_superuser %}
+                <span>
+                    <div class="d-flex justify-content-between install mt-3">
+                        <a href="{% url 'blog_update_page' blog_id=blog.id %}" class="btn btn-primary">
+                            Edit Blog
+                        </a>
+                        <a href="{% url 'blog_delete_page' blog_id=blog.id %}" class="btn btn-danger">
+                            Delete Blog
+                        </a>
+                    </div>
+                </span>
+                {% endif %}
             </div>
         </div>
     </div>

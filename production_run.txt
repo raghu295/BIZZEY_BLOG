@@ -1,0 +1,14 @@
+Setup for production server
+
+1. Install Gunicorn
+2. Workers(3) and Threads(4)
+  -- total number of concurrent requests = workers * threads
+3. command: gunicorn BIZZEY_BLOG.asgi --workers=3 --threads=4
+   -- the above command can handle 12 concurrent requests
+4. add your logs in logger_blog.log file
+   command: gunicorn BIZZEY_BLOG.asgi -- workers=3 --threads=4 --logfile=logger_blog.log
+
+
+FINAL PRODUCTION COMMAND:
+"""
+gunicorn BIZZEY_BLOG.wsgi -- workers=3 --threads=4 --logfile=logger_blog.log

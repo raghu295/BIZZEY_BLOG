@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib.admin.views.decorators import user_passes_test
+from blog.emailform import EmailForm
+from django.views.generic.edit import FormView
+from .models import Contact
 
 # Create your views here.
 
@@ -60,11 +63,11 @@ def register(request):
             messages.error(request, "Password and Confirm password does not match")
             return redirect("register")
 
-        if User.objects.filter(email = email_id).exists():
+        if User.objects.filter(email=email_id).exists():
             messages.error(request, message="Email already exists")
             return redirect("register")
 
-        # insert profile to databse
+        # insert profile to database
         user_data = {"username": email_id, "email": email_id, "password": password}
         user = User.objects.create(**user_data)
         user.set_password(password)
@@ -79,8 +82,29 @@ def about(request):
     return render(request, "about.html")
 
 def contact(request):
-    # get vlaue on session
-    print("request.session:", request.session.get("blog"))
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        if name:
+            contact.name = name
+
+        if email:
+            contact.email = email
+
+        if message:
+            contact.message = message
+
+
+        # Save the contact data to the database
+        contact_data = {"name": name, "email": email, "message": message}
+        print(contact_data)
+        Contact.objects.create(**contact_data)
+        messages.info(request, message="We have received your message and will get back to you shortly")
+        return redirect("contact")
+
+    # get value on session
     return render(request, "contact.html")
 
 
@@ -106,6 +130,7 @@ def create_blog(request):
         title = request.POST.get("title")
         content = request.POST.get("content")
         blog_image = request.FILES.get("blog_image")
+        print(blog_image)
         image_url = save_file(request, blog_image)
         blog_data = {"title": title, "description": content, "image": image_url, "user": request.user}
         print(blog_data)
@@ -180,3 +205,19 @@ def profile_page(request):
             return redirect("profile_page")
     context = {"profile": profile}
     return render(request, "profile.html", context)
+
+
+
+
+
+
+class EmailView(FormView):
+    template_name = 'emailform.html'
+    form_class = EmailForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        print("form.cleaned_data:", form.cleaned_data)
+        return super().form_valid(form)

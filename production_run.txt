@@ -12,3 +12,5 @@ Setup for production server
 FINAL PRODUCTION COMMAND:
 """
 gunicorn BIZZEY_BLOG.wsgi -- workers=3 --threads=4 --logfile=logger_blog.log
+
+"""

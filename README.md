@@ -1,5 +1,4 @@
 # BIZZEY_BLOG
-# BIZZEY_BLOG
 
 This repository contains the code for the BIZZEY_BLOG project.
 

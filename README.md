@@ -73,15 +73,15 @@ source venv/bin/activate
 
 ### Usage
 
-Access the application at http://localhost:8000
-Access the admin panel at http://localhost:8000/admin
-Access the API documentation at http://localhost:8000/swagger/
+1. Access the application at http://localhost:8000
+2. Access the admin panel at http://localhost:8000/admin
+3. Access the API documentation at http://localhost:8000/swagger/
 
 ### Contributing
 
-Fork the repository
-Create a new branch (git checkout -b feature-branch)
-Make your changes
-Commit your changes (git commit -m 'Add some feature')
-Push to the branch (git push origin feature-branch)
-Open a pull request
+1. Fork the repository
+2. Create a new branch (git checkout -b feature-branch)
+3. Make your changes
+4. Commit your changes (git commit -m 'Add some feature')
+5. Push to the branch (git push origin feature-branch)
+6. Open a pull request
